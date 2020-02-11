@@ -1,0 +1,95 @@
+﻿@using Robot.Enums
+@model ToyRobot.Models.BoardModel
+
+
+<h2>GameBoard</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PlaceX, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PlaceX, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.ValidationMessageFor(model => model.PlaceX, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.PlaceY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PlaceY, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        @Html.ValidationMessageFor(model => model.PlaceY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.Direction, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.Direction,
+                        new SelectList(Enum.GetValues(typeof(Direction))),
+                        new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <input name="command" type="submit" value="@CommandType.PLACE" class="btn btn-default customButton" />
+                </div>
+                <div class="col-md-3">
+                    <input name="command" type="submit" value="@CommandType.MOVE" class="btn btn-default customButton" />
+                </div>
+                <div class="col-md-3">
+                    <input name="command" type="submit" value="@CommandType.LEFT" class="btn btn-default customButton" />
+                </div>
+                <div class="col-md-3">
+                    <input name="command" type="submit" value="@CommandType.RIGHT" class="btn btn-default customButton" />
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input name="command" type="submit" value="@CommandType.REPORT" class="btn btn-default customButton" />
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <table>
+                        @foreach (var item in Model.FinishedCommands)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item)<br />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table>
+                        @foreach (var item in Model.Reports)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item)<br />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
