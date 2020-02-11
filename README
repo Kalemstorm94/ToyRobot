@@ -1,0 +1,28 @@
+**************** INTRODUCTION ****************
+The application was implemented according to the rules present on the https://zone.github.io/backend/toy-robot page.
+The logic consists in a GameManager class, which stores all the important information about the grid and the bot. This 
+class also process all the commands that are given by an user. All the classes that are building the logic of the game,
+were implemented inside "Robot" class library project. The "RobotRun" project is just a way to check the mechanics of the 
+application. Also, the solution has a third project consisting in unit tests. 
+
+
+
+**************** HOW TO RUN ****************
+To run the application, you should simply open the "ToyRobot.sln" with Visual Studio (I used VS2019 Community). After opening the
+solution, make sure that "ToyRobot" project is set as StartUp project. Also, you need to go to the properties of the 
+project (using right click). Inside the Web section, make sure that IIS Express is selected, alonng with an URL
+(eg: https://localhost:44345/). After running the application, access the url alongside with the controller "Home" and the 
+action "Game" (eg: https://localhost:44345/Home/Game).
+
+NOTE: After download, the solution should be cleaned and rebuilt. Also, please check the dependency to the "Robot" project in the Web
+application properties.
+
+
+**************** HOW TO PLAY ****************
+On the first page, you are required to give the application the number of rows and columns you want for your in-game grid.
+After hitting the "Play" button, you will be redirected to another page where you can give commands according to the rules 
+on https://zone.github.io/backend/toy-robot. After executing a command, the application will display on a list on the left side 
+if that command was VALID/INVALID. If the command was a Report command and also a VALID one, then the output will also be
+displayed on a list on the right side.
+
+
